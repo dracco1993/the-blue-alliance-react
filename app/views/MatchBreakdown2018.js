@@ -97,8 +97,8 @@ export default class MatchBreakdown2019 extends React.Component {
         "completedRocketFar": false,
         "completedRocketNear": false,
         "endgameRobot1": "HabLevel1",
-        "endgameRobot2": "HabLevel2",
-        "endgameRobot3": "HabLevel1",
+        "endgameRobot2": "HabLevel1",
+        "endgameRobot3": "HabLevel3",
         "foulCount": 0,
         "foulPoints": 10,
         "habClimbPoints": 3,
@@ -122,7 +122,7 @@ export default class MatchBreakdown2019 extends React.Component {
         "preMatchBay7": "Panel",
         "preMatchBay8": "Panel",
         "preMatchLevelRobot1": "HabLevel1",
-        "preMatchLevelRobot2": "HabLevel2",
+        "preMatchLevelRobot2": "HabLevel1",
         "preMatchLevelRobot3": "HabLevel1",
         "rp": 2,
         "sandStormBonusPoints": 3,
@@ -139,11 +139,18 @@ export default class MatchBreakdown2019 extends React.Component {
 
   getSandstormBonusFor(breakdown, robotNumber) {
     if (breakdown["habLineRobot" + robotNumber] == "CrossedHabLineInSandstorm") {
-      if (breakdown["preMatchLevelRobot" + robotNumber] == "HabLevel1") {
-        return "Level 1"
-      } else if (breakdown["preMatchLevelRobot" + robotNumber] == "HabLevel2") {
-        return "Level 2"
+      let result = breakdown["preMatchLevelRobot" + robotNumber]
+      if (result.includes("HabLevel")) {
+        return `Level ${result.substr(-1)}`
       }
+    }
+    return "--"
+  }
+
+  getHABClimbFor(breakdown, robotNumber) {
+    let result = breakdown["endgameRobot" + robotNumber]
+    if (result.includes("HabLevel")) {
+      return `Level ${result.substr(-1)}`
     }
     return "--"
   }
@@ -206,7 +213,7 @@ export default class MatchBreakdown2019 extends React.Component {
 
         <BreakdownRow data={["Total Sandstorm Bonus",
           this.tempProps().redBreakdown.sandStormBonusPoints,
-          this.tempProps().blueBreakdown.sandStormBonusPoints]} subtotal={true} />
+          this.tempProps().blueBreakdown.sandStormBonusPoints]} total={true} />
 
         <BreakdownRow data={["Cargo Ship: # Hatch Panels / # Cargo",
           this.getCargoShipDataFor(this.tempProps().redBreakdown),
@@ -222,67 +229,35 @@ export default class MatchBreakdown2019 extends React.Component {
 
         <BreakdownRow data={["Total Points: Hatch Panels / Cargo",
           `${this.tempProps().redBreakdown.hatchPanelPoints} / ${this.tempProps().redBreakdown.cargoPoints}`,
-          `${this.tempProps().blueBreakdown.hatchPanelPoints} / ${this.tempProps().blueBreakdown.cargoPoints}`]} subtotal={true}/>
+          `${this.tempProps().blueBreakdown.hatchPanelPoints} / ${this.tempProps().blueBreakdown.cargoPoints}`]} subtotal={true} />
 
-        <BreakdownRow data={["Total Auto",
-          this.tempProps().redBreakdown.autoPoints,
-          this.tempProps().blueBreakdown.autoPoints]} total={true} />
+        <BreakdownRow data={["Robot 1 HAB Climb",
+          this.getHABClimbFor(this.tempProps().redBreakdown, 1),
+          this.getHABClimbFor(this.tempProps().blueBreakdown, 1)]} />
 
-        <BreakdownRow data={["Scale Ownership + Boost (seconds)",
-          [this.tempProps().redBreakdown.teleopScaleOwnershipSec, " + ", this.tempProps().redBreakdown.teleopScaleBoostSec],
-          [this.tempProps().blueBreakdown.teleopScaleOwnershipSec, " + ", this.tempProps().blueBreakdown.teleopScaleBoostSec]]} />
+        <BreakdownRow data={["Robot 2 HAB Climb",
+          this.getHABClimbFor(this.tempProps().redBreakdown, 2),
+          this.getHABClimbFor(this.tempProps().blueBreakdown, 2)]} />
 
-        <BreakdownRow data={["Switch Ownership + Boost (seconds)",
-          [this.tempProps().redBreakdown.teleopSwitchOwnershipSec, " + ", this.tempProps().redBreakdown.teleopSwitchBoostSec],
-          [this.tempProps().blueBreakdown.teleopSwitchOwnershipSec, " + ", this.tempProps().blueBreakdown.teleopSwitchBoostSec]]} />
+        <BreakdownRow data={["Robot 3 HAB Climb",
+          this.getHABClimbFor(this.tempProps().redBreakdown, 3),
+          this.getHABClimbFor(this.tempProps().blueBreakdown, 3)]} />
 
-        <BreakdownRow data={["Ownership Points",
-          this.tempProps().redBreakdown.teleopOwnershipPoints,
-          this.tempProps().blueBreakdown.teleopOwnershipPoints]} subtotal={true} />
-
-        <BreakdownRow data={["Force Cubes Total (Played)",
-          [this.tempProps().redBreakdown.vaultForceTotal, " (", this.tempProps().redBreakdown.vaultForcePlayed, ")"],
-          [this.tempProps().blueBreakdown.vaultForceTotal, " (", this.tempProps().blueBreakdown.vaultForcePlayed, ")"]]} />
-
-        <BreakdownRow data={["Levitate Cubes Total (Played)",
-          [this.tempProps().redBreakdown.vaultLevitateTotal, " (", this.tempProps().redBreakdown.vaultLevitatePlayed, ")"],
-          [this.tempProps().blueBreakdown.vaultLevitateTotal, " (", this.tempProps().blueBreakdown.vaultLevitatePlayed, ")"]]} />
-
-        <BreakdownRow data={["Boost Cubes Total (Played)",
-          [this.tempProps().redBreakdown.vaultBoostTotal, " (", this.tempProps().redBreakdown.vaultBoostPlayed, ")"],
-          [this.tempProps().blueBreakdown.vaultBoostTotal, " (", this.tempProps().blueBreakdown.vaultBoostPlayed, ")"]]} />
-
-        <BreakdownRow data={["Vault Total Points",
-          this.tempProps().redBreakdown.vaultPoints,
-          this.tempProps().blueBreakdown.vaultPoints]} subtotal={true} />
-
-        <BreakdownRow data={["Robot 1 Endgame",
-          this.tempProps().redBreakdown.endgameRobot1,
-          this.tempProps().blueBreakdown.endgameRobot1]} />
-
-        <BreakdownRow data={["Robot 2 Endgame",
-          this.tempProps().redBreakdown.endgameRobot2,
-          this.tempProps().blueBreakdown.endgameRobot2]} />
-
-        <BreakdownRow data={["Robot 3 Endgame",
-          this.tempProps().redBreakdown.endgameRobot3,
-          this.tempProps().blueBreakdown.endgameRobot3]} />
-
-        <BreakdownRow data={["Park/Climb Points",
-          this.tempProps().redBreakdown.endgamePoints,
-          this.tempProps().blueBreakdown.endgamePoints]} subtotal={true} />
+        <BreakdownRow data={["HAB Climb Points",
+          this.tempProps().redBreakdown.habClimbPoints,
+          this.tempProps().blueBreakdown.habClimbPoints]} subtotal={true} />
 
         <BreakdownRow data={["Total Teleop",
           this.tempProps().redBreakdown.teleopPoints,
           this.tempProps().blueBreakdown.teleopPoints]} total={true} />
 
-        <BreakdownRow data={["Auto Quest",
-          this.tempProps().redBreakdown.autoQuestRankingPoint ? this.checkImage() : this.xImage(),
-          this.tempProps().blueBreakdown.autoQuestRankingPoint ? this.checkImage() : this.xImage()]} />
+        <BreakdownRow data={["Complete Rocket",
+          this.tempProps().redBreakdown.completeRocketRankingPoint ? this.checkImage() : this.xImage(),
+          this.tempProps().blueBreakdown.completeRocketRankingPoint ? this.checkImage() : this.xImage()]} />
 
-        <BreakdownRow data={["Face The Boss",
-          this.tempProps().redBreakdown.faceTheBossRankingPoint ? this.checkImage() : this.xImage(),
-          this.tempProps().blueBreakdown.faceTheBossRankingPoint ? this.checkImage() : this.xImage()]} />
+        <BreakdownRow data={["HAB Docking",
+          this.tempProps().redBreakdown.habDockingRankingPoint ? this.checkImage() : this.xImage(),
+          this.tempProps().blueBreakdown.habDockingRankingPoint ? this.checkImage() : this.xImage()]} />
 
         <BreakdownRow data={["Fouls",
           ["+", this.tempProps().redBreakdown.foulPoints],
