@@ -4,7 +4,7 @@ import {
   Text,
   View
 } from 'react-native';
-import BreakdownRow from '../componets/BreakdownRow';
+import BreakdownRow from '../components/BreakdownRow';
 import breakdown from '../styles/breakdown';
 import images from '../config/images';
 

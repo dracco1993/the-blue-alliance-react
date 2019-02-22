@@ -5,7 +5,7 @@ import {
     Text,
     View
 } from 'react-native';
-import BreakdownRow from '../componets/BreakdownRow';
+import BreakdownRow from '../components/BreakdownRow';
 import breakdown from '../styles/breakdown';
 
 const ROBOT_SET_POINTS = 4;
@@ -16,7 +16,7 @@ const COOP_SET_POINTS = 20;
 const COOP_STACK_POINTS = 40;
 
 export default class MatchBreakdown2015 extends React.Component {
-  
+
   foulPoints(value) {
     if (value == 0) {
       return <Text style={breakdown.font}>{value}</Text>
@@ -24,7 +24,7 @@ export default class MatchBreakdown2015 extends React.Component {
       return <Text style={breakdown.font}>- {value}</Text>
     }
   }
-  
+
   pointsCommon(value, points) {
     if (value == true) {
       return <Text style={breakdown.font}>{points}</Text>
@@ -32,7 +32,7 @@ export default class MatchBreakdown2015 extends React.Component {
       return <Text style={breakdown.font}>0</Text>
     }
   }
-  
+
   render() {
     return (
       <View style={breakdown.container}>
@@ -42,11 +42,11 @@ export default class MatchBreakdown2015 extends React.Component {
         <BreakdownRow data={["Robot Set",
                                 this.pointsCommon(this.props.redBreakdown.robot_set, ROBOT_SET_POINTS),
                                 this.pointsCommon(this.props.blueBreakdown.robot_set, ROBOT_SET_POINTS)]}/>
-        
+
         <BreakdownRow data={["Container Set",
                                 this.pointsCommon(this.props.redBreakdown.container_set, CONTAINER_SET_POINTS),
                                 this.pointsCommon(this.props.blueBreakdown.container_set, CONTAINER_SET_POINTS)]}/>
-        
+
         <BreakdownRow data={["Tote Set",
                                 this.pointsCommon(this.props.redBreakdown.tote_set, TOTE_SET_POINTS),
                                 this.pointsCommon(this.props.blueBreakdown.tote_set, TOTE_SET_POINTS)]}/>

@@ -4,7 +4,7 @@ import {
   Text,
   View
 } from 'react-native';
-import BreakdownRow from '../componets/BreakdownRow';
+import BreakdownRow from '../components/BreakdownRow';
 import breakdown from '../styles/breakdown';
 import images from '../config/images';
 
@@ -19,7 +19,7 @@ export default class MatchBreakdown2017 extends React.Component {
       autoEngaged = json_data["rotor" + rotor_number + "Auto"]
     }
     var teleopEngaged = json_data["rotor" + rotor_number + "Engaged"]
-    
+
     if (autoEngaged) {
       return <Image source={images.checkCircle} />
     } else if (teleopEngaged) {
@@ -39,29 +39,29 @@ export default class MatchBreakdown2017 extends React.Component {
       return <Image source={images.clear} />
     }
   }
-  
+
   checkImage() {
     return (
       <Image source={images.check} />
     );
   }
-  
+
   upArrowImage() {
     return (
       <Image source={images.arrows.up} />
     );
   }
-  
+
   downArrowImage() {
     return (
       <Image source={images.arrows.down} />
     );
   }
-  
+
   render() {
     return (
       <View style={breakdown.container}>
-        
+
         <BreakdownRow data={["Teams", this.props.redTeams, this.props.blueTeams]} vertical={true} subtotal={true} />
 
         <BreakdownRow data={["Auto Mobility",

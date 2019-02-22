@@ -5,8 +5,8 @@ import {
     Text,
     View
 } from 'react-native';
-import TableSectionHeader from '../componets/TableSectionHeader';
-import InsightRow from '../componets/InsightRow';
+import TableSectionHeader from '../components/TableSectionHeader';
+import InsightRow from '../components/InsightRow';
 import { round } from '../helpers/number';
 import {
   scoreFor,
