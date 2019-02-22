@@ -4,9 +4,9 @@ import {
   Text,
   View
 } from 'react-native';
-import BreakdownRow from '../components/BreakdownRow';
-import breakdown from '../styles/breakdown';
-import images from '../config/images';
+import BreakdownRow from '../../components/BreakdownRow';
+import breakdown from '../../styles/breakdown';
+import images from '../../config/images';
 
 // Override our Image and Text to have specific sizes
 const Image = ({ style, ...props }) => <ReactNative.Image style={[breakdown.imageSize, style]} {...props} />;

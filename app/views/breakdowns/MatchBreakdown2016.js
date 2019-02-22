@@ -6,9 +6,9 @@ import {
   Text,
   View
 } from 'react-native';
-import BreakdownRow from '../components/BreakdownRow';
-import breakdown from '../styles/breakdown';
-import images from '../config/images';
+import BreakdownRow from '../../components/BreakdownRow';
+import breakdown from '../../styles/breakdown';
+import images from '../../config/images';
 
 export default class MatchBreakdown2016 extends React.Component {
 

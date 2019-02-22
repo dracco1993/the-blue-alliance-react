@@ -5,8 +5,8 @@ import {
     Text,
     View
 } from 'react-native';
-import BreakdownRow from '../components/BreakdownRow';
-import breakdown from '../styles/breakdown';
+import BreakdownRow from '../../components/BreakdownRow';
+import breakdown from '../../styles/breakdown';
 
 const ROBOT_SET_POINTS = 4;
 const TOTE_SET_POINTS = 6;
