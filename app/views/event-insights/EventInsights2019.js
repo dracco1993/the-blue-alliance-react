@@ -5,15 +5,15 @@ import {
     Text,
     View
 } from 'react-native';
-import TableSectionHeader from '../components/TableSectionHeader';
-import InsightRow from '../components/InsightRow';
-import { round } from '../helpers/number';
+import TableSectionHeader from '../../components/TableSectionHeader';
+import InsightRow from '../../components/InsightRow';
+import { round } from '../../helpers/number';
 import {
   scoreFor,
   percentageFor,
   bonusStat,
   highScoreString,
-} from '../helpers/insights';
+} from '../../helpers/insights';
 
 export default class EventInsights2019 extends React.Component {
   render() {
