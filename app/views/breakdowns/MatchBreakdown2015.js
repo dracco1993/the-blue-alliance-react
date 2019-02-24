@@ -6,7 +6,8 @@ import {
     View
 } from 'react-native';
 import BreakdownRow from '../../components/BreakdownRow';
-import breakdown from '../../styles/breakdown';
+import MatchBreakdown from '../breakdowns/MatchBreakdown';
+import breakdownStyle from '../../styles/breakdown';
 
 const ROBOT_SET_POINTS = 4;
 const TOTE_SET_POINTS = 6;
@@ -15,27 +16,27 @@ const TOTE_STACK_POINTS = 20;
 const COOP_SET_POINTS = 20;
 const COOP_STACK_POINTS = 40;
 
-export default class MatchBreakdown2015 extends React.Component {
+export default class MatchBreakdown2015 extends MatchBreakdown {
 
   foulPoints(value) {
     if (value == 0) {
-      return <Text style={breakdown.font}>{value}</Text>
+      return <Text style={breakdownStyle.font}>{value}</Text>
     } else {
-      return <Text style={breakdown.font}>- {value}</Text>
+      return <Text style={breakdownStyle.font}>- {value}</Text>
     }
   }
 
   pointsCommon(value, points) {
     if (value == true) {
-      return <Text style={breakdown.font}>{points}</Text>
+      return <Text style={breakdownStyle.font}>{points}</Text>
     } else {
-      return <Text style={breakdown.font}>0</Text>
+      return <Text style={breakdownStyle.font}>0</Text>
     }
   }
 
   render() {
     return (
-      <View style={breakdown.container}>
+      <View style={breakdownStyle.container}>
 
         <BreakdownRow data={["Teams", this.props.redTeams, this.props.blueTeams]} vertical={true} subtotal={true} />
 
