@@ -2,12 +2,10 @@
 
 import React from 'react';
 import {
-    Text,
     View
 } from 'react-native';
 import TableSectionHeader from '../../components/TableSectionHeader';
 import InsightRow from '../../components/InsightRow';
-import { round } from '../../helpers/number';
 import {
   scoreFor,
   percentageFor,
