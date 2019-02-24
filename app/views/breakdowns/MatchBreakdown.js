@@ -1,10 +1,10 @@
 import React from 'react';
 import ReactNative from 'react-native';
-import breakdown from '../../styles/breakdown';
+import breakdownStyle from '../../styles/breakdown';
 import images from '../../config/images';
 
 // Override our Image and Text to have specific sizes
-const Image = ({ style, ...props }) => <ReactNative.Image style={[breakdown.imageSize, style]} {...props} />;
+const Image = ({ style, ...props }) => <ReactNative.Image style={[breakdownStyle.imageSize, style]} {...props} />;
 
 export default class MatchBreakdown extends React.Component {
   checkImage() {
