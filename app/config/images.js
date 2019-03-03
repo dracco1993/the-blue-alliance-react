@@ -5,7 +5,8 @@ const images = {
 	arrows: {
 		up: require('../images/ic_keyboard_arrow_up.png'),
 		down: require('../images/ic_keyboard_arrow_down.png'),
-	}
+	},
+	trip_origin: require("../images/svgs/baseline-trip_origin-24px.svg")
 };
 
 export default images;

@@ -49,7 +49,7 @@ const breakdown = StyleSheet.create({
   },
   total: {
     fontWeight: 'bold',
-  },
+  }
 });
 
 export default breakdown;

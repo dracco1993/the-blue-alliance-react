@@ -9,8 +9,10 @@
     "hoek": "^5.0.3",
     "merge": ">=1.2.1",
     "npm": "^6.4.1",
-    "react": "^16.8.3",
-    "react-native": "^0.59.0-rc.2",
-    "react-native-vector-icons": "^6.3.0"
+    "react": "^16.8.1",
+    "react-native": "^0.59.0-rc.3",
+    "react-native-remote-svg": "^1.4.2",
+    "react-native-svg": "^9.2.4",
+    "react-native-svg-transformer": "^0.12.1"
   }
 }

@@ -5,6 +5,38 @@ import {
 import BreakdownRow from '../../components/BreakdownRow';
 import MatchBreakdown from '../breakdowns/MatchBreakdown';
 import breakdownStyle from '../../styles/breakdown';
+import Icon from "../../components/Icon";
+// import Image from 'react-native-remote-svg';
+import Svg, {
+  Circle,
+  Ellipse,
+  G,
+  Text,
+  TSpan,
+  TextPath,
+  Path,
+  Polygon,
+  Polyline,
+  Line,
+  Rect,
+  Use,
+  Image,
+  Symbol,
+  Defs,
+  LinearGradient,
+  RadialGradient,
+  Stop,
+  ClipPath,
+  Pattern,
+  Mask,
+} from 'react-native-svg';
+
+
+// import ReactNative from 'react-native';
+// const Image = ({ style, ...props }) => <ReactNative.Image style={[breakdownStyle.imageSize, style]} {...props} />;
+
+// import SvgComponent from '../../images/svgs/temp';
+// import { ReactComponent as Logo } from './../../images/svgs/baseline-trip_origin-24px.svg';
 
 export default class MatchBreakdown2019 extends MatchBreakdown {
 
@@ -38,7 +70,33 @@ export default class MatchBreakdown2019 extends MatchBreakdown {
         cargoCount++
       }
     }
-    return `${panelCount} / ${cargoCount}`
+    return (
+      // <Icon
+      //   name="trip_origin"
+      //   // color="#ccc"
+      //   // size={25}
+      // />
+
+      // SvgComponent
+
+      // console.log("TEST")
+      // Logo
+      // SvgComponent
+
+
+      // <Svg
+      //   height="100"
+      //   width="100"
+      // >
+      //   <Rect x="0" y="0" width="100" height="100" fill="black" />
+      //   <Circle cx="50" cy="50" r="30" fill="yellow" />
+      //   <Circle cx="40" cy="40" r="4" fill="black" />
+      //   <Circle cx="60" cy="40" r="4" fill="black" />
+      //   <Path d="M 40 60 A 10 10 0 0 0 60 60" stroke="black" />
+      // </Svg>
+
+      // `1 | ${panelCount} / ${cargoCount}`
+    )
   }
 
   getRocketShipDataFor(breakdown, rocketLocation) {
@@ -85,15 +143,15 @@ export default class MatchBreakdown2019 extends MatchBreakdown {
           this.props.redBreakdown.sandStormBonusPoints,
           this.props.blueBreakdown.sandStormBonusPoints]} total={true} />
 
-        <BreakdownRow data={["Cargo Ship: # Hatch Panels / # Cargo",
+        <BreakdownRow data={["Cargo Ship",
           this.getCargoShipDataFor(this.props.redBreakdown),
           this.getCargoShipDataFor(this.props.blueBreakdown)]} />
 
-        <BreakdownRow data={["Rocket 1: # Hatch Panels / # Cargo",
+        <BreakdownRow data={["Rocket 1",
           this.getRocketShipDataFor(this.props.redBreakdown, "Near"),
           this.getRocketShipDataFor(this.props.blueBreakdown, "Near")]} />
 
-        <BreakdownRow data={["Rocket 2: # Hatch Panels / # Cargo",
+        <BreakdownRow data={["Rocket 2",
           this.getRocketShipDataFor(this.props.redBreakdown, "Far"),
           this.getRocketShipDataFor(this.props.blueBreakdown, "Far")]} />
 
