@@ -4,7 +4,7 @@ import {
   View
 } from 'react-native';
 
-export default class InsightRow extends React.Component {
+export default class ImageCount extends React.Component {
   render() {
     return (
       <View style={{ flexDirection: 'row', alignItems: 'center', marginHorizontal: 4 }}>
