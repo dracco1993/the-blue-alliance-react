@@ -1,14 +1,37 @@
 import React from 'react';
+import ReactNative from 'react-native';
 import {
   View,
   Text
 } from 'react-native';
 import BreakdownRow from '../../components/BreakdownRow';
+import images from '../../config/images';
 import ImageCount from '../../components/ImageCount';
 import MatchBreakdown from '../breakdowns/MatchBreakdown';
 import breakdownStyle from '../../styles/breakdown';
 
+// Override our Image and Text to have specific sizes
+const Image = ({ style, ...props }) => <ReactNative.Image style={[breakdownStyle.imageSize, style]} {...props} />;
+
 export default class MatchBreakdown2019 extends MatchBreakdown {
+
+  nullHatchPanelImage() {
+    return (
+      <Image source={images[2019].hatchPanel} style={{ tintColor: '#616161' }} />
+    );
+  }
+
+  hatchPanelImage() {
+    return (
+      <Image source={images[2019].hatchPanel} style={{ tintColor: '#ffeb3b' }} />
+    );
+  }
+
+  cargoImage() {
+    return (
+      <Image source={images[2019].cargo} style={{ tintColor: '#ff6d00' }} />
+    );
+  }
 
   getSandstormBonusFor(breakdown, robotNumber) {
     if (breakdown["habLineRobot" + robotNumber] == "CrossedHabLineInSandstorm") {
