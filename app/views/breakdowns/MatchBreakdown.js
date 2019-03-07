@@ -36,4 +36,22 @@ export default class MatchBreakdown extends React.Component {
       <Image source={images.arrows.down} />
     );
   }
+
+  nullHatchPanelImage() {
+    return (
+      <Image source={images[2019].hatchPanel} style={{ tintColor: '#616161'}}/>
+    );
+  }
+
+  hatchPanelImage() {
+    return (
+      <Image source={images[2019].hatchPanel} style={{ tintColor: '#ffeb3b'}}/>
+    );
+  }
+
+  cargoImage() {
+    return (
+      <Image source={images[2019].cargo} style={{ tintColor: '#ff6d00'}}/>
+    );
+  }
 }

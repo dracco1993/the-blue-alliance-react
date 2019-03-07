@@ -3,6 +3,7 @@ import {
   View
 } from 'react-native';
 import BreakdownRow from '../../components/BreakdownRow';
+import ImageCount from '../../components/ImageCount';
 import MatchBreakdown from '../breakdowns/MatchBreakdown';
 import breakdownStyle from '../../styles/breakdown';
 
@@ -27,18 +28,45 @@ export default class MatchBreakdown2019 extends MatchBreakdown {
   }
 
   getCargoShipDataFor(breakdown) {
+    var nullPanelCount = 0
     var panelCount = 0
     var cargoCount = 0
 
     for (let i = 1; i <= 8; i++) {
-      if (breakdown["bay" + i].includes("Panel")) {
-        panelCount++
+      let key = `bay${i}`
+
+      if (breakdown[key].includes("Panel")) {
+        let nullKey = `preMatchBay${i}`
+
+        // Safeguard against against bays 4 and 5, which will never have null hatches
+        let isNullHatch = breakdown.hasOwnProperty(nullKey) && breakdown[nullKey].includes("Panel")
+
+        if (isNullHatch) {
+          nullPanelCount++
+        } else {
+          panelCount++
+        }
       }
-      if (breakdown["bay" + i].includes("Cargo")) {
+      if (breakdown[key].includes("Cargo")) {
         cargoCount++
       }
     }
-    return `${panelCount} / ${cargoCount}`
+
+    return (
+      <View style={{ flexDirection: 'row', alignItems: 'center' }}>
+        <ImageCount
+          image={this.nullHatchPanelImage()}
+          count={nullPanelCount} />
+
+        <ImageCount
+          image={this.hatchPanelImage()}
+          count={panelCount} />
+
+        <ImageCount
+          image={this.cargoImage()}
+          count={cargoCount} />
+      </View>
+    )
   }
 
   getRocketShipDataFor(breakdown, rocketLocation) {
@@ -85,15 +113,15 @@ export default class MatchBreakdown2019 extends MatchBreakdown {
           this.props.redBreakdown.sandStormBonusPoints,
           this.props.blueBreakdown.sandStormBonusPoints]} total={true} />
 
-        <BreakdownRow data={["Cargo Ship: # Hatch Panels / # Cargo",
+        <BreakdownRow data={["Cargo Ship",
           this.getCargoShipDataFor(this.props.redBreakdown),
           this.getCargoShipDataFor(this.props.blueBreakdown)]} />
 
-        <BreakdownRow data={["Rocket 1: # Hatch Panels / # Cargo",
+        <BreakdownRow data={["Rocket 1",
           this.getRocketShipDataFor(this.props.redBreakdown, "Near"),
           this.getRocketShipDataFor(this.props.blueBreakdown, "Near")]} />
 
-        <BreakdownRow data={["Rocket 2: # Hatch Panels / # Cargo",
+        <BreakdownRow data={["Rocket 2",
           this.getRocketShipDataFor(this.props.redBreakdown, "Far"),
           this.getRocketShipDataFor(this.props.blueBreakdown, "Far")]} />
 
