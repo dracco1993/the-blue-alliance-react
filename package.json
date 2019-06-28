@@ -10,6 +10,7 @@
     "merge": ">=1.2.1",
     "npm": "^6.4.1",
     "react": "^16.8.3",
-    "react-native": "^0.59.0"
+    "react-native": "^0.59.0",
+    "react-native-exception-handler": "^2.10.8"
   }
 }
