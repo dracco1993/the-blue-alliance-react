@@ -154,6 +154,19 @@ export default class MatchBreakdown2019 extends MatchBreakdown {
     }
   }
 
+  getRPCompletion(isComplete, completionImage = this.checkImage()) {
+    if (isComplete) {
+      return (
+        <>
+          <View style={{ paddingRight: 1 }}>{completionImage}</View>
+          <Text>(+1 RP)</Text>
+        </>
+      );
+    } else {
+      return this.xImage();
+    }
+  }
+
   render() {
     return safeRender(
       <View style={breakdownStyle.container}>
@@ -315,24 +328,26 @@ export default class MatchBreakdown2019 extends MatchBreakdown {
         <BreakdownRow
           data={[
             "Complete Rocket",
-            this.props.redBreakdown.completeRocketRankingPoint
-              ? this.getRocketCompletedImage(this.props.redBreakdown)
-              : this.xImage(),
-            this.props.blueBreakdown.completeRocketRankingPoint
-              ? this.getRocketCompletedImage(this.props.blueBreakdown)
-              : this.xImage()
+            this.getRPCompletion(
+              this.props.redBreakdown.completeRocketRankingPoint,
+              this.getRocketCompletedImage(this.props.redBreakdown)
+            ),
+            this.getRPCompletion(
+              this.props.blueBreakdown.completeRocketRankingPoint,
+              this.getRocketCompletedImage(this.props.blueBreakdown)
+            )
           ]}
         />
 
         <BreakdownRow
           data={[
             "HAB Docking",
-            this.props.redBreakdown.habDockingRankingPoint
-              ? this.checkImage()
-              : this.xImage(),
-            this.props.blueBreakdown.habDockingRankingPoint
-              ? this.checkImage()
-              : this.xImage()
+            this.getRPCompletion(
+              this.props.redBreakdown.habDockingRankingPoint
+            ),
+            this.getRPCompletion(
+              this.props.blueBreakdown.habDockingRankingPoint
+            )
           ]}
         />
 
